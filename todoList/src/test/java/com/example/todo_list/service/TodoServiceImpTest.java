@@ -17,7 +17,7 @@ import com.example.todo_list.repository.TodoRepository;
 
 class TodoServiceImpTest {
 	
-	public TodoServiceImp todoService;
+	public TodoServiceImp todoService = new TodoServiceImp();
 	
 	private static Todo todo;
 	
@@ -28,9 +28,9 @@ class TodoServiceImpTest {
 
 	@Test
 	void createTodo_AddedToRepository() {
-		todoService.addTodo(todo.getUserName(), todo.getDescription(), todo.getTargetDate(), false);
+		todoService.addTodo(todo);
 		assertTrue(todoService.db.containsTodo(todo));
-		assertTrue(todoService.db.getTodo(todo).get().getDescription().isEmpty());
+		assertTrue(!todoService.db.getTodo(todo).get().getDescription().isEmpty());
 	}
 	
 }

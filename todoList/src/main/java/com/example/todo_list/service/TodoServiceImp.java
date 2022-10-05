@@ -9,7 +9,7 @@ public class TodoServiceImp {
 	
 	public Db db = new Db();
 	
-	public void addTodo(String name, String desc, Date targetDate, boolean isDone) {
-		db.addTodo(new Todo(name, desc, targetDate, isDone));
+	public void addTodo(Todo todo) {
+		db.addTodo(todo);
 	}
 }
