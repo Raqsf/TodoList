@@ -14,13 +14,22 @@
 								required="required" />
 							<form:errors path="description" cssClass="text-warning" />
 						</fieldset>
-
+						
+						<fieldset class="form-group">
+							<form:label path="creationDate">Creation Date</form:label>
+							<form:input path="creationDate" type="text" class="form-control"
+								required="required" />
+							<form:errors path="creationDate" cssClass="text-warning" />
+						</fieldset>
+						
 						<fieldset class="form-group">
 							<form:label path="targetDate">Target Date</form:label>
 							<form:input path="targetDate" type="text" class="form-control"
 								required="required" />
 							<form:errors path="targetDate" cssClass="text-warning" />
 						</fieldset>
+						
+						
 
 						<button type="submit" class="btn btn-success">Save</button>
 					</form:form>

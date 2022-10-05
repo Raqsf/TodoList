@@ -53,4 +53,28 @@ class TodoServiceImpTest {
 		});
 	}
 	
+	
+	@Test
+	void updatePriority_Task_Correct() {
+		todoService.addTodo(todo);
+		String priority = new String();
+		todo.setPriority(priority);
+		
+		assertTrue(todoService.db.containsTodo(todo));
+		assertTrue(!todoService.db.getTodo(todo.getId()).get().getDescription().isEmpty());
+		
+	}
+	
+	@Test
+	void updatePriority_Task_InCorrect() {
+		todoService.addTodo(todo);
+		String priority = new String();
+		todo.setPriority(priority);
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			todoService.updateTodo(todo);
+		});
+		
+	}
+	
 }

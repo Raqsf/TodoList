@@ -23,6 +23,8 @@ public class Todo {
 	    private Date creationDate;
 
 	    private Date targetDate;
+	    
+	    private String priority;
 
 	    public Todo() {
 	        super();
@@ -35,6 +37,7 @@ public class Todo {
 	        this.creationDate = new Date();
 	        this.targetDate = targetDate;
 	    }
+	    
 	    
 	    public long getId() {
 			return id;
@@ -49,7 +52,12 @@ public class Todo {
 		}
 		
 		public Date getCreationDate() {
-			return creationDate;
+			
+			return creationDate  ;
+		}
+		
+		public void setCreationDate(Date creationDate) {
+			this.creationDate = creationDate;
 		}
 
 		public void setUserName(String userName) {
@@ -70,6 +78,15 @@ public class Todo {
 
 		public void setTargetDate(Date targetDate) {
 			this.targetDate = targetDate;
+		}
+		
+		public String getPriority() {
+			return priority;
+		}
+		
+		public void setPriority(String priority) {
+			this.priority = priority;
+			
 		}
 	
 }

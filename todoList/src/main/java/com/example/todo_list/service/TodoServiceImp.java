@@ -16,4 +16,8 @@ public class TodoServiceImp {
 	public void updateTodo(Todo todo) {
 		db.updateTodo(todo);
 	}
+	
+	public void updatePriority(Todo todo) {
+		db.updatePriority(todo);
+	}
 }

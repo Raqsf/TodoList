@@ -32,4 +32,12 @@ public class Db {
 			todos.set(index, todo);
 		}
 	}
+
+	public void updatePriority(Todo todo) {
+		int index = todos.indexOf(todo);
+		if((index >= 0 ) && (index <= 5)) {
+			todos.set(index, todo);
+		}
+		
+	}
 }
