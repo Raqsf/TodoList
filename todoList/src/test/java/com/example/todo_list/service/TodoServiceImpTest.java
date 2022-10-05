@@ -52,25 +52,36 @@ class TodoServiceImpTest {
 	}
 	
 	
+	
 	@Test
 	void updatePriority_Task_Correct() {
 		todoService.addTodo(todo);
-		String priority = new String();
-		todo.setPriority(priority);
-		
+		String priorityH = new String("High");
+		String priorityM = new String("Medium");
+		String priorityL = new String("Low");
+
+		todo.setPriority(priorityH);	
 		assertTrue(todoService.db.containsTodo(todo));
-		assertTrue(!todoService.db.getTodo(todo.getId()).get().getDescription().isEmpty());
+		assertEquals(todo.getPriority(),priorityH);
+		
+		todo.setPriority(priorityM);	
+		assertTrue(todoService.db.containsTodo(todo));
+		assertEquals(todo.getPriority(),priorityM);
+		
+		todo.setPriority(priorityL);	
+		assertTrue(todoService.db.containsTodo(todo));
+		assertEquals(todo.getPriority(),priorityL);
 		
 	}
 	
 	@Test
 	void updatePriority_Task_InCorrect() {
 		todoService.addTodo(todo);
-		String priority = new String();
-		todo.setPriority(priority);
+		String priority = new String("Software");
+		
 		
 		assertThrows(IllegalArgumentException.class, () -> {
-			todoService.updateTodo(todo);
+			todo.setPriority(priority);
 		});
 		
 	}

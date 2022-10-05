@@ -90,7 +90,16 @@ public class Todo {
 		}
 		
 		public void setPriority(String priority) {
-			this.priority = priority;
+			switch(priority) {
+				case "High":
+				case "Medium":
+				case "Low":
+					this.priority = priority;
+					break;
+				default:
+					throw new IllegalArgumentException();
+			}
+			
 			
 		}
 	
