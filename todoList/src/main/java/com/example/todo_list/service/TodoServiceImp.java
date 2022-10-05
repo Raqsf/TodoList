@@ -12,4 +12,8 @@ public class TodoServiceImp {
 	public void addTodo(Todo todo) {
 		db.addTodo(todo);
 	}
+	
+	public void updateTodo(Todo todo) {
+		db.updateTodo(todo);
+	}
 }

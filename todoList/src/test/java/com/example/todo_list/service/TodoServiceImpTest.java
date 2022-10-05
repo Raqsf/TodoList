@@ -2,18 +2,12 @@ package com.example.todo_list.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.example.todo_list.controller.TodoController;
 import com.example.todo_list.model.Todo;
-import com.example.todo_list.repository.TodoRepository;
 
 class TodoServiceImpTest {
 	
@@ -30,7 +24,33 @@ class TodoServiceImpTest {
 	void createTodo_AddedToRepository() {
 		todoService.addTodo(todo);
 		assertTrue(todoService.db.containsTodo(todo));
-		assertTrue(!todoService.db.getTodo(todo).get().getDescription().isEmpty());
+		assertTrue(!todoService.db.getTodo(todo.getId()).get().getDescription().isEmpty());
+	}
+	
+	@Test
+	void updateTodo_AddFinalizationDate_DatesInCorrectOrder() {
+		todoService.addTodo(todo);
+		
+		Date finalDate = new Date();
+		todo.setTargetDate(finalDate);
+		
+		todoService.updateTodo(todo);
+		
+		Todo resultTodo = todoService.db.getTodo(todo.getId()).get();
+		assertEquals(resultTodo.getTargetDate(), finalDate);
+		assertTrue(resultTodo.getTargetDate().after(resultTodo.getCreationDate()));
+	}
+	
+	@Test
+	void updateTodo_AddFinalizationDate_DatesInIncorrectOrder() {
+		todoService.addTodo(todo);
+		
+		Date finalDate = new Date(1664852825);
+		todo.setTargetDate(finalDate);
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			todoService.updateTodo(todo);
+		});
 	}
 	
 }

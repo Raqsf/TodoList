@@ -17,12 +17,19 @@ public class Db {
 		return todos.contains(todo);
 	}
 	
-	public Optional<Todo> getTodo(Todo todo) {
+	public Optional<Todo> getTodo(long id) {
 		for(Todo t: todos) {
-			if(t.equals(todo)) {
-				return Optional.of(todo);
+			if(t.getId() == id) {
+				return Optional.of(t);
 			}
 		}
 		return Optional.empty();
+	}
+	
+	public void updateTodo(Todo todo) {
+		int index = todos.indexOf(todo);
+		if(index >= 0) {
+			todos.set(index, todo);
+		}
 	}
 }
