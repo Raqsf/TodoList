@@ -14,7 +14,11 @@ public class TodoServiceImp {
 	}
 	
 	public void updateTodo(Todo todo) {
-		db.updateTodo(todo);
+		try {
+			db.updateTodo(todo);
+		} catch(IllegalArgumentException e) {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	public void updatePriority(Todo todo) {

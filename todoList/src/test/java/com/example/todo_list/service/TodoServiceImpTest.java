@@ -17,7 +17,7 @@ class TodoServiceImpTest {
 	
 	@BeforeAll
 	public static void setUp() {
-		todo = new Todo("Joaquim", "Do something", new Date(), false);
+		todo = new Todo("Joaquim", "Do something", new Date(1664952825), false);
 	}
 
 	@Test
@@ -46,10 +46,8 @@ class TodoServiceImpTest {
 		todoService.addTodo(todo);
 		
 		Date finalDate = new Date(1664852825);
-		todo.setTargetDate(finalDate);
 		
-		assertThrows(IllegalArgumentException.class, () -> {
-			todoService.updateTodo(todo);
+		assertThrows(IllegalArgumentException.class, () -> {todo.setTargetDate(finalDate);
 		});
 	}
 	

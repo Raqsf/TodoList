@@ -1,5 +1,6 @@
 package com.example.todo_list.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -77,7 +78,11 @@ public class Todo {
 		}
 
 		public void setTargetDate(Date targetDate) {
-			this.targetDate = targetDate;
+			if(targetDate.after(creationDate)) {
+				this.targetDate = targetDate;
+			} else {
+				throw new IllegalArgumentException(); 
+			}
 		}
 		
 		public String getPriority() {
